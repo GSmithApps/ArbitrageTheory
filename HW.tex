@@ -1,0 +1,418 @@
+\documentclass[]{book}
+
+%These tell TeX which packages to use.
+\usepackage{array,epsfig}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsxtra}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{color}
+
+%Here I define some theorem styles and shortcut commands for symbols I use often
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem*{rmk}{Remark}
+\newtheorem{lem}{Lemma}
+\newtheorem*{joke}{Joke}
+\newtheorem{ex}{Example}
+\newtheorem*{soln}{Solution}
+\newtheorem{prop}{Proposition}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\graph}{\mathrm{graph}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\Z}{\bb{Z}}
+\newcommand{\Q}{\bb{Q}}
+\newcommand{\R}{\bb{R}}
+\newcommand{\C}{\bb{C}}
+\newcommand{\N}{\bb{N}}
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\m}{\mathbf{m}}
+\newcommand{\MM}{\mathscr{M}}
+\newcommand{\HH}{\mathscr{H}}
+\newcommand{\Om}{\Omega}
+\newcommand{\Ho}{\in\HH(\Om)}
+\newcommand{\bd}{\partial}
+\newcommand{\del}{\partial}
+\newcommand{\bardel}{\overline\partial}
+\newcommand{\textdf}[1]{\textbf{\textsf{#1}}\index{#1}}
+\newcommand{\img}{\mathrm{img}}
+\newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\inter}[1]{\mathrm{int}{#1}}
+\newcommand{\exter}[1]{\mathrm{ext}{#1}}
+\newcommand{\cl}[1]{\mathrm{cl}{#1}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\vol}{\mathrm{vol}}
+\newcommand{\cnt}{\mathrm{ct}}
+\newcommand{\osc}{\mathrm{osc}}
+\newcommand{\LL}{\mathbf{L}}
+\newcommand{\UU}{\mathbf{U}}
+\newcommand{\support}{\mathrm{support}}
+\newcommand{\AND}{\;\wedge\;}
+\newcommand{\OR}{\;\vee\;}
+\newcommand{\Oset}{\varnothing}
+\newcommand{\st}{\ni}
+\newcommand{\wh}{\widehat}
+
+%Pagination stuff.
+\setlength{\topmargin}{-.3 in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9.in}
+\setlength{\textwidth}{6.5in}
+\pagestyle{empty}
+
+
+
+\begin{document}
+
+
+\begin{center}
+{\Large Econ 780 \hspace{0.5cm} HW Week 2}\\
+\textbf{Minh Cao, Grant Smith, Ella Barnes, Alexander Erwin and Mark Coomes}\\ %You should put your name here
+Due:  %You should write the date here.
+\end{center}
+
+\vspace{0.2 cm}
+
+
+\subsection*{Exercises for chapter 2}
+
+\begin{enumerate}
+\item Question 1:  Familiarize yourself with InkScape and LaTeX. Done.
+\item
+Question 2.a
+
+
+\begin{proof}
+    First, we know that ${B_1}'={B_1}''$. Using this, we can say $R'=R''$ by the following:
+    $$1+R'={B_1}'={B_1}''=1+R'' \implies R'=R''.$$
+    Let $Q'$ be the martingale measure for model prime, by definition 2.4. ${S_0}'= \frac{1}{1+R'}E^{Q'}[S_1]$, multiply both sides by $\frac{1}{\alpha}$ and using the linearity of expectation operation, we have:\\
+    $$\frac{1}{\alpha}{S_0}'= \frac{1}{1+R'}E^{Q'}[\frac{1}{\alpha}{S_1}']$$
+    We also know, from the problem statement, that ${S_t}'=\alpha {S_t}''$ or, rearranged, $\frac{1}{\alpha} {S_t}'={S_t}''$. Substituting this and $R''$ for $R'$, we have:
+    $${S_0}''= \frac{1}{1+R''}E^{Q'}[{S_1}'']$$
+    And from the definition of a martingale measure, we can say stock 2's martingale measure equation is
+    $${S_0}''= \frac{1}{1+R''}E^{Q''}[{S_1}'']$$
+    which implies that $Q' = Q''$ 
+\end{proof}
+
+2.b
+\begin{proof}
+As above, we know that $R'=R''$, which we will simply call $R$. Furthermore, using the definition of martingale measures, we know the following:
+
+$${S_0}'= \frac{1}{1+R'}E^{Q'}[{S_1}']=\frac{1}{1+R}E^{Q'}[{S_1}']$$
+$${S_0}''= \frac{1}{1+R''}E^{Q''}[{S_1}'']= \frac{1}{1+R}E^{Q''}[{S_1}'']$$
+
+Also from the problem statement, we know that ${S_1}' = \alpha{S_1}'' $. Doing manipulations similar to above, we multiply the second equation by $\alpha$ and use the linearity of expectation to get 
+
+$$\alpha{S_0}''= \frac{1}{1+R}E^{Q''}[\alpha{S_1}'']= \frac{1}{1+R}E^{Q''}[{S_1}']$$
+
+Furthermore, using ${S_0}' > \alpha{S_0}''$, we get the following:
+
+$$\frac{1}{1+R}E^{Q'}[{S_1}'] > \frac{1}{1+R}E^{Q''}[{S_1}']$$
+$$E^{Q'}[{S_1}'] > E^{Q''}[{S_1}']$$
+
+Which implies that $Q'$ puts more weight on the good outcome than $Q''$
+
+\end{proof}
+
+2.c. 
+\begin{proof}
+
+    First, we know that ${B_1}'<{B_1}''$, so  $1+R'<1+R''$, which implies:
+    
+    $$\frac{1}{1+R'}> \frac{1}{1+R''}$$
+    
+    Or
+    
+    $$ \frac{1}{1+R''} < \frac{1}{1+R'}$$
+
+Using the definition of martingale measures, we know the following:
+
+$${S_0}'= \frac{1}{1+R'}E^{Q'}[{S_1}']$$
+$${S_0}''= \frac{1}{1+R''}E^{Q''}[{S_1}'']$$
+
+Doing manipulations similar to above, we multiply the second equation by $\alpha$ and use the linearity of expectation to get 
+
+$$\alpha{S_0}''= \frac{1}{1+R''}E^{Q''}[\alpha{S_1}'']$$
+
+Also from the problem statement, we know that ${S_t}' = \alpha{S_t}'' $. Substituting gives:
+
+$${S_0}'= \frac{1}{1+R''}E^{Q''}[{S_1}']$$
+
+And using equation the first equation above:
+
+$$\frac{1}{1+R'}E^{Q'}[{S_1}']= \frac{1}{1+R''}E^{Q''}[{S_1}']$$
+
+And using the bond rate inequality, 
+
+$$\frac{1}{1+R'}E^{Q'}[{S_1}']= \frac{1}{1+R''}E^{Q''}[{S_1}'] < \frac{1}{1+R'}E^{Q''}[{S_1}']  $$
+
+And stated clearly:
+
+$$E^{Q'}[{S_1}'] < E^{Q''}[{S_1}']  $$
+
+Hence the double prime martingale measure puts more weight in the good outcome compared to the prime martingale measure.\\
+
+\end{proof}
+
+\item Question 2.1.
+\begin{proof}
+
+
+From definition 2.4, we have: $S_0=s = \frac{1}{1+R}E^{Q}[S_1] = \frac{1}{1+R}\left[q_usu+q_dsd \right] =  \frac{1}{1+R}\left[q_usu+ (1-q_u)sd\right] = \frac{1}{1+R}\left[q_usu+ (1-q_u)sd\right] \implies 1+R = q_u(u-d) + d\implies q_u = \frac{(1+R)-d}{u-d}$.\\
+Symmetric argument, $q_d = \frac{(u-1+R)}{u-d}$
+
+\end{proof}
+
+\begin{proof}
+WLOG, suppose $X_1<X = \phi(Z)$ We can get "free money" by buying the contingentcy plan at price $X_1<\phi(Z)$ and recieve $\phi(Z)>X_1$
+\end{proof}
+
+\item Question 4.
+
+In this question, the only thing master is the rate of return of bond, in the original model, let the rate of return bond in the new model be $\beta$.
+
+We have $b_1=B_1 = \beta B_0 = \beta b_0 \implies  \beta = \frac{b_1}{b_0}$
+
+Hence, statement 2.3 become: $d<\frac{b_1}{b_0}<u$.
+
+Statement 2.4 become: $S_0= \frac{b_0}{b_1}E^{Q}[S_1]$.
+
+The formular for Q will become:\\ 
+\begin{equation*}
+ Q = \left\{
+        \begin{array}{ll}
+            q_u = \frac{(\frac{b_1}{b_0})-d}{u-d}\\
+            q_d = \frac{u-\frac{b_1}{b_0}}{u-d}
+        \end{array}
+    \right.
+\end{equation*}
+\item Question 5\\
+Yes, by theorem 2.3. we have $d=\frac{2}{3} \leq 1+R =1+0=1 \leq \frac{3}{2}$. Hence the market is arbitrage free.
+
+To create a replica porfolio. Note that this model now have 3 two period.
+we have:
+$$\phi(\frac{9}{4}) = 1, \phi(1) = 0 , \phi(\frac{4}{9})= 0$$
+
+
+$$\frac{3}{2} = q_u \frac{9}{4} +(1-q_u)*1 \implies q_u = 0.4$$
+Implies in the node facing (1,0) $$X_1 = \frac{1}{1+0}0.4 * \frac{9}{4} + 0.6*1 = 0.4$$
+Similarly, in the lower node. $X_1 = 0$.\\
+In the original node. $X_0 = \frac{4}{25}$.\\
+
+Now compute h at node 0.
+$$x_0 = \frac{\frac{2}{3}0.4-\frac{3}{2}*0}{\frac{3}{2}-\frac{2}{3}} = -\frac{8}{25}$$
+Similarly $y_0 = \frac{12}{25}$
+Now we are facing claim: $\frac{9}{4}, 0$. using similar strategy, we can compute: $x_1 = -\frac{4}{5},y_1= \frac{2}{3} \frac{1}{\frac{5}{4}} = \frac{8}{15}$.
+At node facing the claim $(0,0)$ is $(x_1,y_1) = (0,0)$
+
+
+
+
+
+
+
+
+
+
+
+\item Question 6
+
+If at node 120, the option price is 50. We can make "free profit".
+Let the portfolio $h =(0,0,0)$ at node 80 and $h=(0,0,0)$ at node 40. let $h=( -42.5 -2.5,\frac{95}{120} , 1)$. 
+$$h = -42.5-2.5+\frac{95}{120}*120 - 50 = 0$$.\\
+Hence the cost of the portfolio h at 120 is 0, at date T the portfolio worth 2.5 dollar. 
+\item Question 7.
+
+Part A) Prove by induction that for all $n>1$:
+
+$$n^3 = \frac{n^2(n+1)^2}{4}$$
+
+Base Case:
+
+$$1^3=1=\frac{1^2*2^2}{4}$$
+
+Assume the equation holds at $n$, we need to prove that it holds at $n+1$. So assume the following:
+
+$$1^3 + 2^3 + ... + n^3 = \frac{n^2(n+1)^2}{4}$$
+
+and try to prove:
+
+$$1^3 + 2^3 + ... + n^3 + (n+1)^3 = \frac{(n+1)^2(n+1+1)^2}{4}$$
+
+First, use the assumption and plug into the left side of the equation. Thus:
+
+$$\frac{n^2(n+1)^2}{4} + (n+1)^3 = \frac{(n+1)^2(n+1+1)^2}{4}$$
+
+Now simplify both sides:
+
+$$\frac{x^4+6x^3+13x^2+12x+4}{4}=\frac{x^4+6x^3+13x^2+12x+4}{4}$$
+
+Thus, we have proven that for all $n>1$:
+
+$$n^3 = \frac{n^2(n+1)^2}{4}$$
+
+
+Part B) Prove by induction that for all $n>1, 4^n + 15n -1$ is divisble by 9. Start with a base case of n = 1
+
+$$4^1 + 15 * 1 - 1 = 4 + 15 -1 = 18 = 9 * 2 + 0$$
+
+Thus, the base case is satisfied. Now we assume that the equation holds at n, and we want to prove that it holds at n+1. Start with the assumption that the equation holds at n:
+
+$$\exists k\in \mathbb{N} s.t.  4^n + 15n - 1 = 9k $$
+
+Now we try to prove the inductive case:
+
+$$\exists k'\in \mathbb{N} s.t.  4^{n+1} + 15(n+1) - 1 = 9k' $$
+
+And we simplify:
+
+$$4^{n+1} + 15(n+1) - 1 =  4^n*4 + 15n+15 - 1 =  4^n*3+15 + 4^n + 15n - 1$$
+
+$$=4^n*3+15 +9k $$
+
+We can drop the 9k because it is certainly divisible by 9.  So we now are left with proving that $4^n*3+15$ is divisible by 9, which we can do by induction. To do so, we show that the base case of $4^1*3 + 15 = 27$ is divisible by 9.  We then show the inductive step that if $4^n * 3 + 15$ is divisible by 9, so must be $4^{n+1} * 3 + 15$.
+
+$$4^{n+1} * 3 + 15 = 4^n * 4 * 3 + 15 = 4^n * 3 * 3 + 4^n * 1 * 3 + 15 = 4^n * 3 * 3 + 9k'$$
+
+In which case we can drop the $9k'$, and we are left with $9 * 4^n$ which is certainly divisible by 9. Thus, for all $n>1$:
+
+$$n^3 = \frac{n^2(n+1)^2}{4}.$$
+
+
+
+
+\item Question 8\\
+
+\begin{proof}
+
+
+
+Given:\\
+$V_t^h=xB_t+yS_t$ as A\\
+$B_t=1+R$ as B\\
+$S_t=su^kd^{t-k}$ as C\\
+$X_t=\frac{1}{1+R}\frac{uV_t(k)-dV_t(k+1)}{u-d}$ as D\\
+$y_t(k)=\frac{1}{S_{t-1}}\frac{V_t(k+1)-V_t(k)}{u-d}$ as E\\
+\\
+Plugging B, D, and E into A yields:\\
+$$V_t^h=\frac{v_t(k)[S_{t-1}u-s_t+v_t{k+1}[-S_d+s_t]}{S_{t-1}(u-d)}$$\\
+\\
+By simplifying and combining like fractions we find:\\
+$$V_t^h=\frac{V_t(k)[S_{t-1}u-S_t]+V_t(k+1)[-S_{t-1}d+S_t]}{S_{t-1}(u-d)}$$\\
+\\
+We are then able to apply $t=0$, $k=0$\\
+$$V_0(0)=\frac{V_0(0)[S_{-1}u-S_0]+V_0(1)[-S_{-1}d+S_0]}{S_{-1}d+S_0}$$\\
+\\
+Using C, we find that $S_{-1}=\frac{s}{d}$ and $S_0=S$, which we plug in\\
+$$V_0(0)=\frac{V_0(0)[\frac{s}{d}u-s+V_0(1)[\frac{-s}{d}d+S]}{\frac{s}{d}(u-d)}=\frac{d}{s}\frac{V_0(0)[\frac{s}{d}u-s]}{(u-d)}$$\\
+\\
+$$V_0(0)=\frac{dV_0(0)[\frac{u}{d}-1]}{u-d}=\frac{V_0(0)[u-d]}{u-d}$$\\
+\\
+Which produces the equality:\\
+$$V_0(0)=V_0(0)$$\\
+\\
+Thus validating this equation's preservation of the identity of $V_0(0)$\\
+
+
+
+Alternative proof.
+
+for $T=1$.
+we have the scheme, $$V_1(1) = \phi(su), V_1(0) = \phi(sk), V_0(0) = \frac{1}{1+R}\left[q_uV_1(1)+q_d(V_1(0)\right]$$
+
+$$q_u = \frac{(1+R)-d}{u-d}, q_d = \frac{(u- 1+R)}{u-d}$$.
+
+Implies $$x_0(0)= \frac{1}{1+R}\frac{uV_1(0)-dV_1(1)}{u-d}$$
+
+$$y_0(0)= \frac{1}{S_0}\frac{V_1(1)-V_1(0)}{u-d}$$
+
+So 2.24 true for $T=1$
+
+Suppose the scheme true for $T=\tau$
+we need to show the scheme true for $T=\tau+1$\\
+
+We will Following the same strategy.
+
+given at period $\tau +1$, the value of the contingent claim at node $(t,k)$  is given by $\phi(su^kd^{\tau+1 - k})$. 
+if we consider node $(t,k)$ such that $t+k = \tau$, this is binomial model at node $(t,k)$. we can following the scheme to find a replica portfolio for a binomial model.
+$$V_{\tau}(k) = \frac{1}{1+R}\left[q_u\phi(su^{k+1} d^{\tau+1-(k+1)})+q_d\phi(su^{k}d^{\tau +1 -k}\right]$$
+$$V_{\tau+1}(k) = \phi(su^kd^{\tau+1-k})$$
+
+Substitute the second equation to the first equation.
+
+$$V_{\tau}(k) = \frac{1}{1+R}\left[q_uV_{t+1}(k+1)+q_dV_{\tau +1}(k)\right]$$
+
+and compute the replica portfolio as in the canonical binomial model, we have:
+
+$$x_{\tau}(k) = \frac{1}{1+R} \frac{uV_{\tau}(k) -dV_t(k+1)}{u-d}$$
+
+$$y_{\tau}(k) = \frac{1}{S_{\tau-1}}\frac{V_{\tau}(k+1)-V_{\tau}(k)}{u-d}$$.\\
+
+For a given $0<t<\tau +1$, 
+since we assume that the scheme is true for $T=\tau$, at node $(t,k)$, period t. we have:
+
+$$V_{t}(k) = \frac{1}{1+R}\left[q_uV_{t+1}(k+1)+q_dV_{t +1}(k)\right]$$
+$$V_{\tau}(k) = \phi(su^kd^{\tau-k})$$.
+
+Incomplete.
+
+
+
+
+
+
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+\end{document}
+
+

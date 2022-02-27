@@ -1,0 +1,362 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm, mathrsfs, bm}
+%\usepackage{array, multirow}
+\usepackage{color, float, graphicx, caption, subcaption}
+\usepackage{comment}
+
+\usepackage{mathtools}%for paired delimiters
+
+\usepackage{hyperref}
+
+\renewcommand{\arraystretch}{1.0}
+
+\captionsetup{font=small}
+\usepackage{setspace}
+\setstretch{1.0}
+%\setlength\topmargin{0in}
+%\setlength\textheight{8in}
+%\setlength\textwidth{5.5in}
+%\setlength\evensidemargin{.5in}
+%\setlength\oddsidemargin{.5in}
+
+\setlength\topmargin{-.45in}
+\setlength\textheight{8.5in}
+\setlength\textwidth{6in}
+\setlength\evensidemargin{.25in}
+\setlength\oddsidemargin{.25in}
+
+
+\graphicspath{{InkscapePics/}}
+
+\newcommand{\executeiffilenewer}[3]{%
+ \ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+ {\pdffilemoddate{#2}}>0%
+ {\immediate\write18{#3}}\fi%
+}
+\newcommand{\includesvg}[1]{%
+ \executeiffilenewer{#1.svg}{#1.pdf}%
+ {inkscape -z -D --file=#1.svg %
+ --export-pdf=#1.pdf --export-latex}%
+ \input{#1.pdf_tex}%
+}
+
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+
+
+\renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
+\renewcommand{\d}{\delta}
+\newcommand{\e}{\varepsilon}
+\newcommand{\g}{\gamma}
+\renewcommand{\k}{\kappa}
+\renewcommand{\l}{\lambda}
+\newcommand{\m}{\mu}
+\renewcommand{\o}{\omega}
+\newcommand{\p}{\rho}
+\newcommand{\s}{\sigma}
+\renewcommand{\t}{\tau}
+\renewcommand{\th}{\theta}
+\newcommand{\z}{\zeta}
+
+
+\newcommand{\ba}{\bm{a}}
+\newcommand{\bg}{\bm{\gamma}}
+\newcommand{\bp}{\bm{p}}
+\newcommand{\bq}{\bm{q}}
+\newcommand{\bmm}{\bm{m}}
+\newcommand{\bmu}{\bm{\mu}}
+\newcommand{\bnu}{\bm{\nu}}
+\newcommand{\bw}{\bm{w}}
+\newcommand{\bx}{\bm{x}}
+\newcommand{\bpi}{\bm{\pi}}
+\newcommand{\bs}{\bm{\sigma}}
+\newcommand{\bS}{\bm{\Sigma}}
+\newcommand{\bth}{\bm{\theta}}
+\newcommand{\bu}{\bm{u}}
+\newcommand{\bv}{\bm{v}}
+
+\newcommand{\bA}{\bm{A}}
+\newcommand{\bH}{\bm{H}}
+\newcommand{\bM}{\bm{M}}
+\newcommand{\bW}{\bm{W}}
+\newcommand{\bX}{\bm{X}}
+
+\newcommand{\rp}{{_{r}p}}
+\newcommand{\rD}{{_{r}\D}}
+\newcommand{\sD}{{_{s}\D}}
+
+
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\D}{\Delta}
+\newcommand{\mD}{\mathcal{D}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathscr{G}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\O}{\Omega}
+\newcommand{\Pt}{\mathscr{P}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\Q}{\mathcal{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\Th}{\Theta}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\V}{\mathscr{V}}
+\newcommand{\Z}{\mathbb{Z}}
+
+
+\newcommand{\ol}{\overline}
+\newcommand{\oll}[1]{\overline{\overline{ #1}}}
+\newcommand{\ul}{\underline}
+\newcommand{\Ex}{\mathbf{E}}
+\renewcommand{\Pr}{\mathbf{P}}
+\newcommand{\td}{\tilde}
+\newcommand{\tr}{\triangleleft}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem*{example}{Example}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{maxminrefinement}{Max-Min Threshold Refinement}
+\newtheorem*{multimaxminrefinement}{Multi-Worker Max-Min Threshold Refinement}
+\newtheorem*{refinement}{An Intuitive Credible Threats Refinement}
+\newtheorem*{minrefinement}{Minimal Refinement}
+\newtheorem{corollary}{Corollary}
+\newtheorem{observation}{Observation}
+\newtheorem{remark}{Remark}
+\newtheorem{assumption}{Assumption}
+\newtheorem*{efficiency}{Efficiency Wage Contract}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\sgn}{sgn}
+
+
+
+\begin{document}
+
+
+\begin{center}
+{\Large Econ 780 \hspace{0.5cm} HW Week 2}\\
+\textbf{Minh Cao, Grant Smith, Ella Barnes, Alexander Erwin and Mark Coomes}\\ %You should put your name here
+Due:  %You should write the date here.
+\end{center}
+
+\vspace{0.2 cm}
+
+
+\subsection*{Exercises for chapter 3}
+Exercise 1
+\begin{itemize}
+
+\item Let $d_{0} = (1,1,1)^{T}, d_{1} =(1,0,0)^{T}, d_{2} = (0,1,0)^{T},d_{3} =(0,0,1)^{T}$.\\
+
+Let $z_{1} =1, z_{2} =1, z_{3} = 1$\\
+Hence: 
+$$d_{0} = (1,1,1)^{T} = z_{1} (1,0,0)^{T} + z_{2}(0,1,0)^{T} + z_{3}(0,0,1)^{T}$$\\
+Since $z_{1} =1, z_{2} =1, z_{3}=1$ are nonnegative.Q.E.D\\
+\item No solution for Problem 2
+
+Suppose there exist $h =(x,y,z) \in R^{3}$\\ such that:
+
+$$hd_{0} = x+y+z<0$$ and\\
+$$hd_{j} \geq 0, j =1,2,3$$ 
+$$hd_{j} \geq 0, j =1,2,3 \implies x,y,z \geq 0 \implies x+y+z \geq 0$$A contradiction. Q.E.D
+
+\item $d_{0} = (a,b,c)^{T}, a,b,c \geq 0$.\\
+let $z_{1} = a, z_{2} =b, z_{3} = c$.\\
+Clearly $z_{1}, z_{2}, z_{3} \geq 0$. and  $d_{0} = (a,b,c)^{T} = a(1,0,0)^{T} + b(0,1,0)^{T} + c(0,0,1)^{T} = z_{1} (1,0,0)^{T} + z_{2}(0,1,0)^{T} + z_{3}(0,0,1)^{T} = z_{1}d_{1} +z_{2}d_{2}+z_{3}d_{3} $. Q.E.D\\
+The solution is simply (a,b,c)
+\item No solution for problem 2
+
+Suppose there exist $h =(x,y,z) \in R^{3}$ such that:\\
+
+$$hd_{0}<0 $$ and\\
+$$hd_{j} \geq 0, j =1,2,3 $$
+$hd_{0}<0 \implies ax+by+cz < 0$\\
+If a, b, and c are all positive, at least one of x, y, and z must be negative.
+$ hd_{j} \geq 0, j =1,2,3 \implies x,y,z \geq 0$\\
+This is essentially selecting the components because each d is a euclidian basis vector. So here we are saying that all of x, y, and z are positive. This is the contradiction. Since $a,b,c \geq 0 \implies ax+by+cz \geq 0$ a contraction.Q.E.D
+
+\item $d_{0} = (-1,-1,-1)^{T}$\\
+Suppose there exist $z_{1},z_{2},z_{3} \geq 0$ such that.\\
+$$(-1,-1,-1)^{T} = d_{0} = z_{1}d_{1}+z_{2}d_{2}
++z_{3}d_{3} = (z_{1},z_{2},z_{3})^{T}$$\\
+Hence $z_{1}=z_{2}=z_{3}=-1$ Here, we have found a solution, and in this solution, at least one component is negative (in fact all are).  And because our matrix is invertible, there is only a single solution to the equation, namely this solution. Therefore, there cannot be a solution with all components positive.
+
+Prove there exist a solution for problem 2.\\
+Let $h=(1,1,1)$\\
+We have
+$$hd_{0} = -3<0 $$ and\\
+$$hd_{j}  = 1 \geq 0, j =1,2,3 $$Q.E.D
+
+\item $d_{0} = (a,b,c)^{T}$, at least one coordinate is negative.\\
+WLOG, suppose $a < 0$.\\
+For problem 2, let $h = (1,0,0)$, we have\\
+$$hd_{0} = a < 0 $$ and\\
+$$hd_{1} = 1, hd_{2} = hd_{3} =0 $$ Q.E.D.\\
+In general, put zero in the place that $d_{0} $ doesn't have negative coordinate and 1 in the place that $d_{0} $ have negative coordinate.\\
+\item For problem 1.\\
+Suppose there exist $z_{1},z_{2},z_{3} \geq 0$ such that.\\
+$$(a,b,c)^{T} = z_{1}d_{1}+z_{2}d_{2}+z_{3}d_{3}= (z_{1},z_{2},z_{3})^{T}$$
+Hence there at least one i such that $z_{i}<0$.Q.E.D
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Exercise 2.\\
+ Consider the augmented matrix.\\
+ 
+  $\ol{D}=
+    \left[\begin{array}{llll}
+    1 & 1 & 2 & 3\\
+    \end{array}
+    \right].$ 
+    \\
+    
+    There is no arbitrage. since there only 1 matrix, so the only choice to make the value of the profolio is zero in day zero is buy nothing, but it will turnout that the value of the porlio at day 1 will be zero. So there will be no arbitrage opportunity.\\
+    
+    let $Q(w_{1}), Q(w_{2}), Q(w_{3})$be Martingale measure for the market.\\
+    We have the formular.\\
+    
+    $$1 = \beta(Q(w_{1}+2Q(w_{}{2})+3Q(w_{3}))$$ and\\ 
+ 
+
+
+
+$$Q(w_{1}) +  Q(w_{2})+ Q(w_{3}) = 1$$. \\ 
+For some $\beta$\\
+For simplicity, I will use $Q_{1}, Q_{2}, Q_{3}$ instead of $Q(w_{1}), Q(w_{2}), Q(w_{3})$
+
+$$1 = \beta(Q(w_{1}+2Q(w_{}{2})+3Q(w_{3})) \implies \frac{1}{\beta} = Q_{1} + 2 Q_{2} +3 Q_{3}$$\\
+Let write $Q_{1} = 1-Q_{2}-Q_{3}$ and substitiue to the equation above, we obtain:\\
+$$\frac{1}{\beta} = 1-Q_{2}-Q_{3} + 2 Q_{2} +3 Q_{3} = 1+Q_{2}+2Q_{3} \implies Q_{2} =\frac{1}{\beta} - 1 - 2Q_{3} $$
+again, substitute $Q_{2} = 1-Q_{1}-Q_{3}$ Obtain\\
+$$\frac{1}{\beta} = Q_{1} + 2(1-Q_{1}-Q_{3}) +3 Q_{3}  = 2-Q_{1}+Q_{3} \implies Q_{1} = 2-\frac{1}{\beta}+Q_{3}$$.\\ Now we will find the bounds for $Q_{2}$ to be legitimate probability measure.
+
+\item $0<Q_{1}<1 \implies 0<2-\frac{1}{\beta}+Q_{3}<1 \implies \frac{1}{\beta} -2 < Q_{3} < \frac{1}{\beta} - 1$
+\item $0<Q_{2}<1 \implies 0<\frac{1}{\beta} - 1 - 2Q_{3} <1 \implies \frac{\frac{1}{\beta} - 2}{2} < Q_{3}<\frac{\frac{1}{\beta}-1}{2}$\\
+Combine these two inequalities.\\ 
+$$\frac{1-2\beta}{2\beta} < Q_{3}<\frac{1-\beta}{2\beta}$$
+Hence the family of martingale measure can be writte as:\\
+$$\{2-\frac{1}{\beta}+Q_{3},\frac{1}{\beta} - 1 - 2Q_{3} ,Q_{3} \mid \frac{1-2\beta}{2\beta} < Q_{3}<\frac{1-\beta}{2\beta} \}$$
+
+
+\item Consider $\ol{D}=
+    \left[\begin{array}{llll}
+    1 & 1.2 & 1.2 & 1.2 \\
+    2 & 2.4 & 2.5 & 2.4
+    \end{array}
+    \right]$.
+   
+  Let transfer the market to nomarlized market Z:
+  
+  $D^{Z} =
+ \left[\begin{array}{llll}
+    1 & 1& 1 & 1 \\
+    2 & 2& \frac{2.5}{1.2} & 2
+    \end{array}
+    \right]$..\\
+    
+Here asset 1 is risk-free asset with the interest rate i $0$.\\
+let $\alpha_{1}, \alpha_{2}, \alpha_{3} $strictly positive and $\alpha_{1} +\alpha_{2}+ \alpha_{3}=1$
+the equation:\\
+$2 = 2\alpha_{1} +\ frac{25}{12}\alpha_{2} + 2(1- \alpha_{1} -\alpha_{2}) \implies \alpha_{2} = 0$  a contradiction. hence the market is not arbitrage free.\\
+% We dont need this part for this problem, just point out the arbitrage porfolio.
+
+In fact, in the original market. Let consider the portfolio $h= (-2,1)$, hence ${V_{0}}^{h}= -2+2 = 0$ and $P({V_{1}}^{h} \geq 0) = 1, P({V_{1}}^{h} >0) >0$ Q.E.D
+ 
+
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
