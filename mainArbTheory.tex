@@ -19,4 +19,58 @@ But make no mistake - if arbitrage doesn't exist, then the probability distribut
 
 Arbitrage says that at least you're going to have some negative no matter what you hold. Having some negative is fine as a normal investor, but at least we can't argue that there's no way you possibly wouldn't do it.
 
+\section{Black Scholes}
+
+$$C_0 = S_0 N(d_1) - Xe^{-rT}N(d_2)$$
+
+$$d_1 = \frac{\ln \frac{S_0}{X} + (r + \frac{\sigma^2}{2})T}{\sigma \sqrt{T}}$$
+
+$$d_2 = \frac{\ln \frac{S_0}{X} + (r - \frac{\sigma^2}{2})T}{\sigma \sqrt{T}}$$
+
+\subsection{Second Black Scholes}
+
+General and market related:
+
+$t$ is time in years, Generally $t=0$ is now
+
+$r$ is the risk-free interest rate
+
+Asset Related:
+
+$S(t)$ is the price of the underlying Asset
+
+$\mu$ is the drift rate of $S$
+
+$\sigma$ is the standard deviation of the stock's log price
+
+Option Related:
+
+$V(S,t)$ is the price of an option as a function of the underlying asset $S$ at time $t$
+
+$C(s,t)$ is the price of a call option
+
+$P(s,t)$ is the price of a put option
+
+$T$ time of option expiration
+
+$\tau$ time until maturity, $\tau = T - t$
+
+$K$ is the strike price
+
+The equations are:
+
+$$C(F,\tau) = D \left[ N(d_+) F - N(d_-) K \right]$$
+
+$$d_+ = \frac{1}{\sigma \sqrt{\tau}} \left[ \ln \frac{F}{K} + \frac{1}{2}\sigma^2\tau\right]$$
+
+$$d_- = d_+ - \sigma \sqrt{\tau}$$
+
+And the auxiliary variables are 
+
+$$D = e^{-r\tau}$$
+
+$$F = e^{r\tau}S$$
+
+
+
 \end{document}
